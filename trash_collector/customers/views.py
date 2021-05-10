@@ -15,3 +15,9 @@ def index(request):
     print(user)
     return render(request, 'customers/index.html')
 
+def change_weekly_pickup_day(request):
+    current_date = Customer.pick_up_date
+    new_date = current_date
+
+
+

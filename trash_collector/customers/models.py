@@ -16,3 +16,6 @@ class Customer(models.Model):
     pick_up_city = models.CharField(max_length=50, default='city')
     pick_up_state = models.CharField(max_length=50, default='state')
     pick_up_zip = models.CharField(max_length=50, default=48217)
+
+    def __str__(self):
+        return self.name
