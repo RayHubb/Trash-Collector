@@ -3,24 +3,20 @@ from django.shortcuts import render
 from django.apps import apps
 
 
-# Create your views here.
-
-# TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
-
-
-# Get the Customer model from the other app, it can now be used to query the db
-def index(request):
-    # The following line will get the logged-in in user (if there is one) within any view function
-    user = request.user
-    # It will be necessary while creating a customer/employee to assign the logged-in user as the user foreign key
-    # This will allow you to later query the database using the logged-in user,
-    # thereby finding the customer/employee profile that matches with the logged-in user.
-    print(user)
-    return render(request, 'employees/index.html')
-
-
 # index view of customers who are in the zip code,have non suspended accounts, pickup is
 # today or the one time pick up is today.
+
+
+
+
+def create(request):
+    if request.method == 'POST':
+        customer_within_zipcode = request.POST.get('customers_within_zipcode')
+        employee_names = request.POST.get('employee_name')
+        describe_employee = Employee(name=name, customer_zipcode=customer_zipcode)
+
+
+
 
 def daily_run(request):
     user = request.user
@@ -45,3 +41,23 @@ def confirm_pickup(request):
 
     }
     return render(request, 'employees/confirm_pickup.html', context)
+
+
+
+
+def employee_names(request):
+    user = request.user
+    employee = employee.objects.get(name="")
+    context = {
+        "employee":employee
+    }
+
+def customer_within_zipcode(request):
+    user = request.user
+    customer = customer.objects.get(pickup_zip="")
+    context = {
+        "costomer":customer
+    }
+    return render(request, 'employees/customers_within_zipcode')
+
+
