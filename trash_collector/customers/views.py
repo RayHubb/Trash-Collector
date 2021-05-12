@@ -48,9 +48,11 @@ def view_account_info(request):
 
 
 def change_pickup(request):
-    pickup
+    if request.method == 'POST':
+        user = request.user
+        old_day = Customer.pickup_day.get(user=user)
     return render(request, 'customers/change_pickup.html')
-
+    pass
 
 def suspend_pickup(request):
     context = {
@@ -60,8 +62,11 @@ def suspend_pickup(request):
 
 
 def view_bill(request):
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    total_amount_due = customer.amount_due
     context = {
-
+        "total_amount_due": total_amount_due
     }
     return render(request, 'customers/view_bill.html', context)
 

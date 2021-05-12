@@ -3,9 +3,15 @@
 
 {% block content %}
     <h1> Account Information <h1>
-    <h3> Hello {{customer.name}} Here you can View and Your Account</h3>
+    <h3> Hello {{customer.name}}!! Here is where you can View your account information!</h3>
     <ul>
-        <li>{{context}}</li>
+        <li>{{customer.name}}</li>
+        <li>Address: {{customer.pickup_address}}</li>
+        <li>Residence: {{customer.pickup_city}}</li>
+        <li>State: {{customer.pickup_state}}</li>
+        <li>Zip: {{customer.pickup_zip}}</li>
+        <li>Pickup Day: {{customer.pickup_day}}</li>
+        <li>Account Balance: {{customer.account_balance}}</li>
     </ul>
 
 {% endblock %}

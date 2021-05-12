@@ -16,7 +16,8 @@ class Customer(models.Model):
     pickup_zip = models.CharField(max_length=50, default=48217)
     pickup_day = models.CharField(max_length=20, default='Monday')
     pickup_suspended = models.BooleanField(default=False)
-    amount_due = models.IntegerField(default=0.00)
+    amount_due = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    pickup_status = True
 
     def __str__(self):
         return self.name
