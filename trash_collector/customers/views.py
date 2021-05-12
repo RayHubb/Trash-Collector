@@ -5,7 +5,6 @@ from django.urls import reverse
 from .models import Customer
 
 
-
 # Create your views here.
 
 # TODO: Create a function for each path created in customers/urls.py. Each will need a template as well.
@@ -23,27 +22,34 @@ def index(request):
 
 
 def create(request):
-    user = request.user
-    context = {
-
-    }
-    return render(request, 'customers/add_information.html', context)
-
+    if request.method == 'POST':
+        user = request.user
+        name = request.POST.get('name')
+        pickup_day = request.POST.get('pickup_day')
+        pickup_address = request.POST.get('pickup_address')
+        pickup_city = request.POST.get('pickup_city')
+        pickup_state = request.POST.get('pickup_state')
+        pickup_zip = request.POST.get('pickup_zip')
+        new_customer = Customer(user=user, name=name, pickup_day=pickup_day, pickup_address=pickup_address,
+                                pickup_city=pickup_city, pickup_state=pickup_state, pickup_zip=pickup_zip)
+        new_customer.save()
+        return HttpResponseRedirect(reverse('customers:account_information'))
+    else:
+        return render(request, 'customers/add_information.html')
 
 
 def view_account_info(request):
     user = request.user
+    customer = Customer.objects.get(user=user)
     context = {
-
+        "customer": customer
     }
     return render(request, 'customers/account_information.html', context)
 
 
 def change_pickup(request):
-    context = {
-
-    }
-    return render(request, 'customers/change_pickup.html', context)
+    pickup
+    return render(request, 'customers/change_pickup.html')
 
 
 def suspend_pickup(request):
@@ -60,13 +66,13 @@ def view_bill(request):
     return render(request, 'customers/view_bill.html', context)
 
 # if request.method == 'POST':
-       # user = request.user
-       # name = request.POST.get('name')
-       # pickup_day = request.POST.get('pickup_day')
-       # pickup_address = request.POST.get('pickup_address')
-       # pickup_city = request.POST.get('pickup_city')
-       # pickup_state = request.POST.get('pickup_state')
-       # pickup_zip = request.POST.get('pickup_zip')
-       # user = Customer(user=user, name=name, pickup_day=pickup_day, pickup_address=pickup_address, pickup_city=pickup_city,
-       #                 pickup_state=pickup_state, pickup_zip=pickup_zip)
-       # user.save()
+# user = request.user
+# name = request.POST.get('name')
+# pickup_day = request.POST.get('pickup_day')
+# pickup_address = request.POST.get('pickup_address')
+# pickup_city = request.POST.get('pickup_city')
+# pickup_state = request.POST.get('pickup_state')
+# pickup_zip = request.POST.get('pickup_zip')
+# user = Customer(user=user, name=name, pickup_day=pickup_day, pickup_address=pickup_address, pickup_city=pickup_city,
+#                 pickup_state=pickup_state, pickup_zip=pickup_zip)
+# user.save()
