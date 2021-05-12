@@ -35,8 +35,9 @@ def daily_run(request):
     # to the daily filter.
 
 
-def confirm_pickup(request):
+def confirm_pickup(request, confirm_pickup):
     user = request.user
+    confirm_pickup: confirm_pickup.objects.get(confirm_pickup="")
     context = {
 
     }
@@ -45,14 +46,14 @@ def confirm_pickup(request):
 
 
 
-def employee_names(request):
+def employee_names(request, employee):
     user = request.user
     employee = employee.objects.get(name="")
     context = {
         "employee":employee
     }
 
-def customer_within_zipcode(request):
+def customer_within_zipcode(request, customer):
     user = request.user
     customer = customer.objects.get(pickup_zip="")
     context = {
