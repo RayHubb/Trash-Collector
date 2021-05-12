@@ -47,20 +47,6 @@ def view_account_info(request):
     return render(request, 'customers/account_information.html', context)
 
 
-def change_pickup(request):
-    if request.method == 'POST':
-        user = request.user
-        old_day = Customer.pickup_day.get(user=user)
-    return render(request, 'customers/change_pickup.html')
-    pass
-
-def suspend_pickup(request):
-    context = {
-
-    }
-    return render(request, 'customers/suspend_pickup.html', context)
-
-
 def view_bill(request):
     user = request.user
     customer = Customer.objects.get(user=user)
@@ -69,6 +55,21 @@ def view_bill(request):
         "total_amount_due": total_amount_due
     }
     return render(request, 'customers/view_bill.html', context)
+
+
+def change_pickup(request):
+    if request.method == 'POST':
+        user = request.user
+        old_day = Customer.pickup_day.get(user=user)
+    return render(request, 'customers/change_pickup.html')
+    pass
+
+
+def suspend_pickup(request):
+    context = {
+
+    }
+    return render(request, 'customers/suspend_pickup.html', context)
 
 # if request.method == 'POST':
 # user = request.user

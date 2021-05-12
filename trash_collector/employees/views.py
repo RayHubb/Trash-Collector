@@ -7,15 +7,12 @@ from django.apps import apps
 # today or the one time pick up is today.
 
 
-
-
 def create(request):
     if request.method == 'POST':
         customer_within_zipcode = request.POST.get('customers_within_zipcode')
         employee_names = request.POST.get('employee_name')
         describe_employee = Employee(name=name, customer_zipcode=customer_zipcode)
-
-
+    pass
 
 
 def daily_run(request):
@@ -33,6 +30,7 @@ def daily_run(request):
 
     # Navbar to direct employee to links for default daily view and any other pages needed related
     # to the daily filter.
+    pass
 
 
 def confirm_pickup(request):
@@ -41,23 +39,24 @@ def confirm_pickup(request):
 
     }
     return render(request, 'employees/confirm_pickup.html', context)
-
-
+    pass
 
 
 def employee_names(request):
     user = request.user
     employee = employee.objects.get(name="")
     context = {
-        "employee":employee
+        "employee": employee
     }
+    pass
+
 
 def customer_within_zipcode(request):
     user = request.user
     customer = customer.objects.get(pickup_zip="")
     context = {
-        "costomer":customer
+        "costumer": customer
     }
     return render(request, 'employees/customers_within_zipcode')
-
+    pass
 
