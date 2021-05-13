@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'trash_collector',
         'USER': 'root',
-        'PASSWORD': 'IamgRoot!@',
+        'PASSWORD': 'Actionready7$',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {

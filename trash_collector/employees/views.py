@@ -9,15 +9,16 @@ from django.apps import apps
 
 def create(request):
     if request.method == 'POST':
-        customer_within_zipcode = request.POST.get('customers_within_zipcode')
         employee_names = request.POST.get('employee_name')
-        describe_employee = Employee(name=name, customer_zipcode=customer_zipcode)
+        employee_zip = request.POST.get(name="name", employee_zip="employee_zip")
     pass
 
 
-def daily_run(request):
-    user = request.user
-    context = {
+def daily_run(request, daily_run):
+    if request.method == 'POST':
+        user = request.user
+        daily_run = daily_run.objects.get(daily_run="")
+        context = {
 
     }
     return render(request, 'employees/daily_run.html', context)
@@ -34,30 +35,34 @@ def daily_run(request):
 
 
 def confirm_pickup(request, confirm_pickup):
-    user = request.user
-    confirm_pickup: confirm_pickup.objects.get(confirm_pickup="")
-    context = {
+    if request.method == 'POST':
+        user = request.user
+        confirm_pickup: confirm_pickup.objects.get(confirm_pickup="")
+        context = {
 
-    }
-    return render(request, 'employees/confirm_pickup.html', context)
-    pass
+        }
+        return render(request, 'employees/confirm_pickup.html', context)
+        pass
 
 
 def employee_names(request, employee):
-    user = request.user
-    employee = employee.objects.get(name="")
-    context = {
-        "employee": employee
-    }
-    pass
+    if request.method == 'POST':
+        user = request.user
+        employee = employee.objects.get(name="")
+        context = {
+            employee: employee
+        }
+        return render(request, 'employees/names.html', context)
+        pass
 
 
-def customer_within_zipcode(request, customer):
-    user = request.user
-    customer = customer.objects.get(pickup_zip="")
-    context = {
-        "costumer": customer
-    }
-    return render(request, 'employees/customers_within_zipcode')
-    pass
+def employee_zip(request, employee):
+    if request.method == 'POST':
+        user = request.user
+        employee = employee.objects.get(employee_zip="")
+        context = {
+            employee: employee
+        }
+        return render(request, 'employees/zip.html', context)
+        pass
 

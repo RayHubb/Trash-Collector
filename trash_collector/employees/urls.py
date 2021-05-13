@@ -10,5 +10,5 @@ urlpatterns = [
     path('daily_run/', views.daily_run, name='daily_run'),
     path('confirm_pickup/', views.confirm_pickup, name='confirm_pickup'),
     path('employee_names/', views.employee_names, name='employee_names'),
-    path('customer_within_zipcode/', views.customer_within_zipcode, name='customer_within_zipcode')
+    path('employee_zip/', views.employee_zip, name='employee_zip')
 ]
