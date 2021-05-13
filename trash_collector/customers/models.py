@@ -12,7 +12,7 @@ class Customer(models.Model):
     user = models.ForeignKey('accounts.User', blank=True, null=True, on_delete=models.CASCADE)
     pickup_address = models.CharField(max_length=50, default='address')
     pickup_city = models.CharField(max_length=50, default='city')
-    pickup_state = models.CharField(max_length=50, default='state')
+    pickup_state = models.CharField(max_length=2, default='state')
     pickup_zip = models.CharField(max_length=50, default=48217)
     pickup_day = models.CharField(max_length=20, default='Monday')
     pickup_suspended = models.BooleanField(default=False)
